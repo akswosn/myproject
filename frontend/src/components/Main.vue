@@ -1,22 +1,30 @@
 <template>
     <div class="page_wrap">
-        <h1>My Project Main(공사중)</h1>
-        <div class="myself">
-          <a href="https://github.com/akswosn" target="_BLANK">github : https://github.com/akswosn</a><br/>
-          <a href="mailto:email : akswosn@gmail.com" >email : akswosn@gmail.com</a>
-        </div>
-        <hr>
-        
+        <h3>My Project Main(공사중)</h3>
         <router-link to="/test">Go to TestAPI</router-link>
         
+      <!-- Summary -->
+      <div class="summary">
+        <span class="title">Summary Info</span>
         <hr>
-        <div class="sub_wrap">
-          <ul class="list">
-            <li class="list-item"><span>프로젝트 구상 : </span>개인 블로그 및 추후 도메인 연결</li>
-            <li class="list-item"><span>환경 : </span>AWS[EC2, RDS], nginx, MariaDB</li>
-            <li class="list-item"><span>개발 언어 및 framework : </span>spring-boot, JPA, vuejs</li>
-          </ul>
-        </div>
+        <ul class="list">
+          <li class="list-item"><span>Git</span> <a href="https://github.com/akswosn" class="link" target="_blank">https://github.com/akswosn</a></li>
+          <li class="list-item"><span>Mail</span> <a href="mailto:akswosn@gmail.com" class="link" target="_blank" >akswosn@gmail.com</a></li>
+          <!--
+          <li class="list-item"><span>프로젝트 구상 : </span>개인 블로그 및 추후 도메인 연결</li>
+          <li class="list-item"><span>환경 : </span>AWS[EC2, RDS], nginx, MariaDB</li>
+          <li class="list-item"><span>개발 언어 및 framework : </span>spring-boot, JPA, vuejs</li>
+          -->
+        </ul>
+      </div>
+      
+      <!-- 대시보드 -->
+      <div class="blog_list">
+        <span class="title">최신 블로그</span>
+        <span class="right"><a href="#">더보기</a></span>
+        <hr>
+        <span class="contents">데이터가 존재하지 않습니다.</span>  
+      </div>
     </div>
 </template>
 
@@ -69,7 +77,14 @@ a {
 .list .list-item span{
   display: inline-block;
   text-align: right;
-  width:200px;
   font-weight: bold;
+}
+
+.blog_list, .summary {
+  text-align: left;
+  padding: 15px 0;
+}
+.blog_list .title, .summary .title{
+  font-weight: bold;font-style: italic;
 }
 </style>

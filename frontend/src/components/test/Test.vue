@@ -120,7 +120,7 @@ export default {
     apiGetAll(){
       var self = this;
       console.log('apiGetAll');
-      this.$http.get(`/api/test`)
+      this.$http.get(this.ROOT_URL+`/api/test`,{crossDomain: true})
       .then((result) => {
         console.log(result)
         this.api1_result = result.data;
@@ -133,7 +133,7 @@ export default {
     apiGetOne(){
       var self = this;
       if(this.api2_id != ''){
-        this.$http.get(`/api/test/`+this.api2_id)
+        this.$http.get(this.ROOT_URL+`/api/test/`+this.api2_id,{crossDomain: true})
         .then((result) => {
           console.log(result)
           this.api2_result = result.data;
@@ -161,6 +161,7 @@ export default {
         method: 'post',
         url: '/api/test',
         headers: {}, 
+        crossDomain: true,
         data: this.api3_test
 
       }).then((result) => {
@@ -190,8 +191,9 @@ export default {
       var self = this;
       this.$http({
         method: 'put',
-        url: '/api/test/'+this.api4_id,
+        url: this.ROOT_URL+'/api/test/'+this.api4_id,
         headers: {}, 
+        crossDomain: true,
         data: this.api4_test
       }).then((result) => {
         console.log(result)
@@ -211,8 +213,9 @@ export default {
       var self = this;
       this.$http({
         method: 'delete',
-        url: '/api/test/'+this.api5_id,
+        url: this.ROOT_URL+'/api/test/'+this.api5_id,
         headers: {}, 
+        crossDomain: true,
       }).then((result) => {
         console.log(result)
         this.api5_result = result.data;
