@@ -1,9 +1,35 @@
 <template>
 
   <div id="app">
-    <!-- Top menu-->
+    <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="/">
+                  Ks Blog
+                </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar">
+                    Menu
+                    <i class="fas fa-bars ml-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                      <!--
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+                      -->
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#/blog">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#/resume">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#/login">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+
+    <!-- Top menu
     <header> 
-      <div>
+      <div>        
         <b-navbar type="dark" variant="dark">
           <b-navbar-brand href="/">Ks Blog</b-navbar-brand>
 
@@ -17,10 +43,7 @@
                 <template v-slot:button-content>
                   <em>Login</em>
                 </template>
-                <!--
-                <b-dropdown-item href="https://github.com/akswosn" class="link" >github : https://github.com/akswosn</b-dropdown-item>
-                <b-dropdown-item href="mailto:email : akswosn@gmail.com" class="link">email : akswosn@gmail.com</b-dropdown-item>
-                  -->
+                
                 <b-dropdown-item href="/#/login" class="login">login</b-dropdown-item>
               </b-nav-item-dropdown>
             </b-navbar-nav>
@@ -28,7 +51,7 @@
         </b-navbar>
          
       </div>
-    </header>
+    </header>-->
 
     
     <router-view/>
@@ -36,13 +59,15 @@
 </template>
 
 <script>
+
 export default {
   name: 'App'
 }
 </script>
 
 <style>
-html, body, .page_wrap { height:100%; overflow:hidden }
+/** 
+html, body, .page_wrap { height:100%; overflow:hidden;  }
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -50,13 +75,10 @@ html, body, .page_wrap { height:100%; overflow:hidden }
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 0px;height:100%; overflow:hidden;
+  margin-top: 0px;height:100%; overflow:hidden;overflow-y: scroll;
 }
 .navbar .navbar-brand{
   font-weight: bold;
-}
+}*/
 /**공통 CSS */
-.right {
-  display: inline-block;float: right;
-}
 </style>

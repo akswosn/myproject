@@ -1,28 +1,34 @@
 <template>
-    <div class="page_wrap">
+    <section class="page-section">
         <div class="login_wrap">
-            <span class="title">login</span>
-            <b-form  @submit.stop.prevent>
-            <label for="user_id">User ID <span>*</span></label>
-            <b-input v-model="userId" :state="validation" id="user_id"></b-input>
-            <!--
-            <b-form-invalid-feedback :state="validation">
-                Your user ID must be 5-12 characters long.
-            </b-form-invalid-feedback>
-            -->
-
             
-            <label for="password">Password <span>*</span></label>
-            <b-input v-model="password" :state="validation" id="password"></b-input>
-            <!--
-            <b-form-invalid-feedback :state="validation">
-                Your user ID must be 5-12 characters long.
-            </b-form-invalid-feedback>
-            -->
+                <div class="form_wrap">
+                <form @submit="onSubmit"  >
+                   
+                    
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">User ID:</span>
+                        </div>
+                        <input type="text" v-model="form.userid" class="form-control" placeholder="ID 를 입력하세요" aria-label="userid" >
+                    </div>
 
-            </b-form>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Password:</span>
+                        </div>
+                        <input type="text" v-model="form.password" class="form-control" placeholder="********" aria-label="password" >
+                    </div>
+
+                    <div class="text-right">
+                        <button type="submit" variant="primary" class="btn btn-primary">Login</button>
+                    </div>
+                   
+                </form>
+                </div>
+          
         </div>
-    </div>
+      </section>
 </template>
 
 <script>
@@ -30,10 +36,18 @@ export default {
   name: 'Login',
   data() {
       return {
-        userId: '',
-        password : ''
+          form: {
+              userId: '',
+              password : ''
+          }
       }
     },
+    methods: {
+      onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+    }
     /*
     computed: {
       validation() {
@@ -45,29 +59,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .login_wrap {
-        text-align: left;
-        margin:20% 0;
-        margin: auto;
-        background-color: darkslategray;
-        color: white;
-        height: 100%;
-        
-    }
-    .login_wrap .title {
-        font-weight: bold; text-align: center;
-        font-size: 22px;
-        display: block;
-        padding: 10px 0;
-    }
-    .login_wrap input {
-        width: 60%;
-        display: inline-block;
-        border: 0;
-    }
-    .login_wrap label {
-        width: 30%; font-weight: bold;
-        display: inline-block;
-        border: 0;
+    .form_wrap {
+        width: 80%;
+        margin :auto;
+        padding:5% 3%;
     }
 </style>
