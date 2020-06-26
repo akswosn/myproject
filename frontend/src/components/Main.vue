@@ -17,7 +17,7 @@
             </div>
         </header>
          <!-- Portfolio Grid-->
-        <section class="page-section bg-light" id="portfolio">
+        <section class="page-section bg-light">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">최신 블로그</h2>

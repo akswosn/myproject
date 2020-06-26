@@ -40,12 +40,12 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Bean	
     public ServletRegistrationBean<HttpServlet> initServlet() {
-	   ServletRegistrationBean<HttpServlet> servRegBean = new ServletRegistrationBean<>();
-	   servRegBean.setServlet(new InitServlet());
-	   servRegBean.addUrlMappings("/init");
-       servRegBean.setLoadOnStartup(2);
-       servRegBean.setAsyncSupported(true);
-       servRegBean.setName("InitServlet");
+      ServletRegistrationBean<HttpServlet> servRegBean = new ServletRegistrationBean<>();
+      servRegBean.setServlet(new InitServlet());
+      servRegBean.addUrlMappings("/init");
+      servRegBean.setLoadOnStartup(2);
+      servRegBean.setAsyncSupported(true);
+      servRegBean.setName("InitServlet");
 
 	   return servRegBean;
     }
@@ -56,8 +56,11 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Bean 
     public FilterRegistrationBean<Filter> getFilterRegistrationBean() { 
-        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>(new WebFilter());
-		registrationBean.addUrlPatterns("/api/*"); 
-		return registrationBean;
+      FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>(new WebFilter());
+      registrationBean.addUrlPatterns("/api/*"); 
+
+      //로그인 외 인증 토큰 체크
+
+      return registrationBean;
     }  
 }

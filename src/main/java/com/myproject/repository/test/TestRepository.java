@@ -1,6 +1,5 @@
 package com.myproject.repository.test;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.myproject.model.test.TestVO;
@@ -9,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 /**
 * <pre>
-* 간략 : Web Filter, Servlet 등록 빈
+* 간략 : 
 * 상세 : 
 * </pre>
 * @Author  : Keun-su(akswosn@gmail)

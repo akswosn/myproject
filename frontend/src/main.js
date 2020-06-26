@@ -7,11 +7,13 @@ import router from './router'
 import axios from 'axios'
 import VueSimpleAlert from "vue-simple-alert"
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// import VeeValidate from 'vee-validate'
 import 'jquery/dist/jquery.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-vue/dist/bootstrap-vue.js'
+
 Vue.config.productionTip = false
 Vue.prototype.$http = axios;
 Vue.use(VueSimpleAlert);
@@ -19,9 +21,12 @@ Vue.use(VueSimpleAlert);
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+
 //
-//Vue.prototype.ROOT_URL = "http://localhost:8080";
 Vue.prototype.ROOT_URL = "";
+Vue.prototype.ROOT_URL = "http://localhost:8080";
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
