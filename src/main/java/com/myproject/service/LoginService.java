@@ -6,6 +6,8 @@ import com.myproject.repository.UserRepository;
 import com.myproject.repository.WebSessionRepository;
 import com.myproject.util.JwtTokenUtil;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,7 +31,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class LoginService {
-
+    private final Logger logger = LogManager.getLogger(LoginService.class);
     @Autowired
     private UserRepository userRepository;
 
@@ -45,11 +47,17 @@ public class LoginService {
   
 
 	public WebSessionVO login(UserVO param) {
-        authenticate(param.getUser_id(), param.getUser_pwd());
-        final UserVO userDetails = userRepository.loadUserByUsername(param.getUser_id());
-        final String token = jwtTokenUtil.generateToken(userDetails);
 
-        //return ResponseEntity.ok(new JwtResponse(token));
+        try {
+            authenticate(param.getUser_id(), param.getUser_pwd());
+            // final UserVO userDetails = userRepository.loadUserByUsername(param.getUser_id());
+            // final String token = jwtTokenUtil.generateToken(userDetails);
+            //return ResponseEntity.ok(new JwtResponse(token));
+            
+        } catch (Exception e) {
+            logger.error(e);
+        }
+
 
 
         return null;
