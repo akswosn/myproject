@@ -27,6 +27,30 @@ Vue.prototype.ROOT_URL = "";
 Vue.prototype.ROOT_URL = "http://localhost:8080";
 
 
+//인증토큰관련(sessionStorage)
+Vue.prototype.$storage = window.sessionStorage;
+axios.interceptors.request.use(async function (config) {
+  // Do something before request is sent
+  let token = Vue.prototype.$storage.getItem('token');
+  if(token != null ){
+    config.headers.Authorization = 'Bearer '+Vue.prototype.$storage.getItem('token');
+  }
+  config.headers
+
+  console.log(config);
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+
+
+
+
+export default axios;
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

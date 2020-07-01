@@ -1,7 +1,6 @@
 package com.myproject.model;
 
 import java.time.LocalDateTime;
-import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,47 +25,14 @@ import lombok.Data;
 @Entity(name="tb_web_session")
 public class WebSessionVO {
     @Id
-    @Column(name = "user_no")
+    @Column(name = "no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_no;
-    private LocalDateTime login_time;
-    private String session_key;
+    private long no;
+    @Column(name = "user_no")
+    private long userNo;
+    @Column(name = "login_time")
+    private LocalDateTime loginTime;
+    @Column(name = "session_key")
+    private String sessionKey;
 
-
-    public String randomSessionKey(int length){
-        StringBuffer temp = new StringBuffer();
-        Random rnd = new Random();
-        int count = 0;
-
-        while(length > count){
-            int rIndex = rnd.nextInt(3);
-            switch (rIndex) {
-                case 0:
-                    // a-z
-                    temp.append((char) ((int) (rnd.nextInt(26)) + 97));
-                    count++;
-                    break;
-                case 1:
-                    // A-Z
-                    temp.append((char) ((int) (rnd.nextInt(26)) + 65));
-                    count++;
-                    break;
-                case 2:
-                    // 0-9
-                    temp.append((rnd.nextInt(10)));
-                    count++;
-                    break;
-                default :
-
-            }
-        }
-        
-        
-        return temp.toString();
-    }
-
-    public static void main(String[] args){
-        WebSessionVO vo = new WebSessionVO();
-        System.out.println(vo.randomSessionKey(20).length());
-    }
 }

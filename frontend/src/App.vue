@@ -19,7 +19,7 @@
                       -->
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#/blog">Blog</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#/resume">Resume</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#/login">Login</a></li>
+                        <li class="nav-item" v-if="!hasLogin"><a class="nav-link js-scroll-trigger" href="/#/login">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -61,7 +61,18 @@
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+      return {
+        hasLogin : false
+      }
+  },
+  mounted(){
+    console.log(this.$storage)
+    if(this.$storage.getItem('userNo') != null){
+      this.hasLogin = true;
+    }
+  }
 }
 </script>
 

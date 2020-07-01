@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
 import Test from '@/components/test/Test'
-import ResumeView from '@/components/resume/View'
+import ResumeMain from '@/components/resume/Main'
+import ResumeRegist from '@/components/resume/Regist'
+import ResumeView from '@/components/resume/Regist'
 import BlogMain from '@/components/blog/Main'
 
 Vue.use(Router)
@@ -27,8 +29,24 @@ export default new Router({
     },
     {
       path: '/resume',
-      name: 'resumeView',
+      name: 'ResumeMain',
+      component: ResumeMain
+    },{
+      path: '/resume/view/:no',
+      name: 'ResumeView',
       component: ResumeView
+    },{
+      path: '/resume/list',
+      name: 'ResumeMain',
+      component: ResumeMain
+    },{
+      path: '/resume/regist',
+      name: 'ResumeRegist',
+      component: ResumeRegist
+    },{
+      path: '/resume/regist/:no+',
+      name: 'ResumeRegist',
+      component: ResumeRegist
     },
     {
       path: '/blog',

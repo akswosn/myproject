@@ -1,82 +1,78 @@
 package com.myproject.service;
 
-import com.myproject.model.UserVO;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import com.myproject.model.WebSessionVO;
-import com.myproject.repository.UserRepository;
+import com.myproject.model.user.UserVO;
 import com.myproject.repository.WebSessionRepository;
+import com.myproject.repository.user.UserRepository;
 import com.myproject.util.JwtTokenUtil;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-/**
-* <pre>
-* 간략 : 
-* 상세 : 
-* </pre>
-* @Author  : Keun-su(akswosn@gmail)
-* @Date    : 2020. 6. 23.
-* @Version : 1.0
-* -----------------------------------
-* 1.0 : 신규작성
-*/
 @Service
-public class LoginService {
+public class LoginService implements UserDetailsService {
     private final Logger logger = LogManager.getLogger(LoginService.class);
     @Autowired
-    private UserRepository userRepository;
+    private JwtTokenUtil tokenUtil;
 
     @Autowired
     private WebSessionRepository webSessionRepository;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-    
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-    
-  
+    private UserRepository userRepo;
 
-	public WebSessionVO login(UserVO param) {
 
-        try {
-            authenticate(param.getUser_id(), param.getUser_pwd());
-            // final UserVO userDetails = userRepository.loadUserByUsername(param.getUser_id());
-            // final String token = jwtTokenUtil.generateToken(userDetails);
-            //return ResponseEntity.ok(new JwtResponse(token));
-            
-        } catch (Exception e) {
-            logger.error(e);
+    public WebSessionVO login(UserVO vo){
+        WebSessionVO result = new WebSessionVO();
+        // UserDetails userDetails = loadUserByUsername(vo.getUserId());
+        // logger.info("userDetails >>>>>>>>>>>"+userDetails);
+
+        String token = tokenUtil.generateToken(vo);
+        logger.info("token >>>>>>>>>>>>>> "+token);
+        result.setUserNo(vo.getNo());
+        result.setSessionKey(token);
+        WebSessionVO check = webSessionRepository.findByUserNo(result.getUserNo());
+        logger.info("WebSessionVO >>> "+check);
+
+        if(check != null){
+            webSessionRepository.deleteById(check.getNo());
         }
+        result.setLoginTime(LocalDateTime.now());
+        webSessionRepository.save(result);
 
-
-
-        return null;
-    }    
-
-    public boolean isLoginTokken(String token){
-        boolean result = false;
-        //webSessionRepository.findOne(ExampleMatcher.matching());
         return result;
     }
 
 
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
+    @Override
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        /*Here we are using dummy data, you need to load user data from
+        database or other third party application*/
+        Optional<UserVO> userOp = userRepo.findByUserId(userId);
+        UserDetails userDetails = null;
+        if (userOp.get() != null) {
+            logger.info("loadUserByUsername >>>> vo "+ userOp.get());
+            UserVO user = userOp.get();
+            userDetails = User.builder().username(String.valueOf(user.getUserId())).password(user.getUserPwd()).build();
+
+            // builder = User.withUsername(userId);
+            // builder.password(new BCryptPasswordEncoder().encode(user.getUserPwd()));
+
+
+            // builder.roles(user.getRoll());
+        } else {
+            throw new UsernameNotFoundException("User not found.");
         }
+
+        return userDetails;
     }
 }

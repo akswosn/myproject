@@ -1,6 +1,7 @@
 <template>
+ <section class="page-section">
     <div>
-        <h1>Test API Page</h1>
+        <h1>Test API Page (JWT, Spring Security 적용되어 인증후 가능)</h1>
         <a v-on:click="goback" href="#">Go to Main</a>
         <hr>
         
@@ -38,7 +39,7 @@
             <div class="result"  v-if="api3Result">
                 {{api3_result}}
             </div>
-            <div class="error" v-if="api3_er">
+            <div class="error" v-if="api3_err">
               {{api3_err}}
             </div>
           </li>
@@ -68,19 +69,9 @@
         </ul>
 
         <hr>
-        <div class="summary">
-          (개인블로그) Summary (작업작업 ...)<br>
-          --------------------------<br>
-          <strong>06-18.</strong> <br>
-          &nbsp;&nbsp;- AWS[RDS, EC2] 설치 및 설정(인바운드설정 DB, OS 및 보안그룹 설정)<br>
-          &nbsp;&nbsp;- nginx proxy  설정 및 spring boot 연동<br>
-          <strong> 06-19. </strong>[TEST API] REST CRUD 배포.<br>
-          &nbsp;&nbsp;- 트랜젝션 설정 작업 진행중...<br>
-          &nbsp;&nbsp;- 외부 yaml 설정 진행중...<br>
-          &nbsp;&nbsp;- 인증키(API) 관련.. 작업 진행중..<br>
-          <strong>06-20(21). </strong><br>
-        </div>
+       
     </div>
+</section>
 </template>
 
 <script>
@@ -137,7 +128,8 @@ export default {
         .then((result) => {
           console.log(result)
           this.api2_result = result.data;
-          this.api2_err = null
+          this.api2_err = null;
+          
         }).catch(function (error) {
         self.api2_err = error;
       })
@@ -159,8 +151,7 @@ export default {
 
       this.$http({
         method: 'post',
-        url: '/api/test',
-        headers: {}, 
+        url: this.ROOT_URL+'/api/test',
         crossDomain: true,
         data: this.api3_test
 

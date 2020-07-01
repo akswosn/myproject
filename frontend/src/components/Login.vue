@@ -19,11 +19,11 @@
                         {{errors.userId}}
                     </p>
                     <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label"  v-bind:class="{ 'text-danger' : !isValidPassword, 'text-success' : isValidPassword}" id="password_label">
+                        <label for="userPwd" class="col-sm-2 col-form-label"  v-bind:class="{ 'text-danger' : !isValidUserPwd, 'text-success' : isValidUserPwd}" id="password_label">
                             Password*</label>
                         <div class="col-sm-8">
-                            <input type="password" id="password" name="password" v-model="form.password" class="form-control" placeholder="********" 
-                            aria-label="password" v-bind:class="{ 'is-invalid' : !isValidPassword, 'is-valid' : isValidPassword}">
+                            <input type="password" id="userPwd" name="userPwd" v-model="form.userPwd" class="form-control" placeholder="********" 
+                            aria-label="password" v-bind:class="{ 'is-invalid' : !isValidUserPwd, 'is-valid' : isValidUserPwd}">
                          </div>
                         
                     </div>
@@ -50,18 +50,18 @@ export default {
     data() {
       return {
         isValidUserId : true,
-        isValidPassword : true,
+        isValidUserPwd : true,
         form: {
             userId: '',
-            password : ''
+            userPwd : ''
         },
         errors:{
             userId : null,
-            password : null,
+            userPwd : null,
         },
         class:{
             userId:[],
-            password:[]
+            userPwd:[]
         }
       }
     },
@@ -76,6 +76,7 @@ export default {
         evt.preventDefault()
         console.log(JSON.stringify(this.form));
         //초기화
+        var self = this;
 
         if (!this.form.userId) {
             this.isValidUserId = false;
@@ -86,37 +87,51 @@ export default {
             this.errors.userId = null;
         }
 
-        if (!this.form.password) {
-            this.isValidPassword = false;
-            this.errors.password = "비밀번호는 필수입니다.";
+        if (!this.form.userPwd) {
+            this.isValidUserPwd = false;
+            this.errors.userPwd = "비밀번호는 필수입니다.";
         }
         else {
-             this.isValidPassword = true;
-            this.errors.password = null;
+             this.isValidUserPwd = true;
+            this.errors.userPwd = null;
         }
 
-
+        console.log(this.errors);
  
-        if(this.errors.userId !=  null || this.errors.password != null){
+        if(this.errors.userId !=  null || this.errors.userPwd != null){
             return;
         }
 
         this.$http({
             method: 'post',
-            url: '/api/login',
+            url: this.ROOT_URL+'/api/login',
             headers: {}, 
             crossDomain: true,
             data: this.form
 
         }).then((result) => {
             console.log('result', result);
+            if(result.data.code == 200){
+                self.$storage.setItem("userNo", result.data.data.userNo);
+                self.$storage.setItem("token", result.data.data.sessionKey);
+                self.$router.push('/');
+            }
+            else {
+                self.$alert(result.data.message);
+            }
 
         }).catch(function (error) {
             console.log('error', error);
         });
 
       },
+    }, mounted() { 
+        console.log("Child mounted");
+        //
+        this.$storage.clear();
     }
+
+
     /*
     computed: {
       validation() {

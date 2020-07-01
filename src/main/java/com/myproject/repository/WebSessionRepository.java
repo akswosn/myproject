@@ -3,6 +3,8 @@ package com.myproject.repository;
 import com.myproject.model.WebSessionVO;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 /**
 * <pre>
 * 간략 : 
@@ -14,6 +16,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 * -----------------------------------
 * 1.0 : 신규작성
 */
+@Repository
 public interface WebSessionRepository extends JpaRepository<WebSessionVO, Long>{
     
+
+    public WebSessionVO findByUserNo(@Param("user_no") long userNo);
+
 }
