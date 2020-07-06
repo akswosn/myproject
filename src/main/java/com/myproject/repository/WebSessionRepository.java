@@ -1,5 +1,7 @@
 package com.myproject.repository;
 
+import java.util.Optional;
+
 import com.myproject.model.WebSessionVO;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,5 +23,8 @@ public interface WebSessionRepository extends JpaRepository<WebSessionVO, Long>{
     
 
     public WebSessionVO findByUserNo(@Param("user_no") long userNo);
+
+	public Optional<WebSessionVO> findByUserNoAndSessionKey(@Param("user_no")long userNo, @Param("session_key")String sessionKey);
+
 
 }

@@ -55,23 +55,25 @@
 
     
     <router-view/>
+
+    <LoginCheckComponent></LoginCheckComponent>
   </div>
 </template>
 
 <script>
+import LoginCheckComponent from './components/LoginCheck'
+
 
 export default {
   name: 'App',
+  components: { LoginCheckComponent },
   data() {
       return {
         hasLogin : false
       }
   },
-  mounted(){
-    console.log(this.$storage)
-    if(this.$storage.getItem('userNo') != null){
-      this.hasLogin = true;
-    }
+  method :{
+
   }
 }
 </script>

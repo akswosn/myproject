@@ -77,5 +77,34 @@ public class LoginController {
 
         return resp;
     }   
+
+    @PostMapping(value="/check")
+    public MyResponseEntity<WebSessionVO> hasLogin(@RequestBody WebSessionVO param){
+        MyResponseEntity<WebSessionVO> resp = new MyResponseEntity<>();
+        try {
+            WebSessionVO vo = loginService.hasLogin(param);
+            if(vo == null){
+                resp.setCheck(false);
+                resp.setCode(500);
+                resp.setData(null);
+            }
+            else {
+                resp.setCheck(true);
+                resp.setCode(200);
+                resp.setData(vo);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
+            resp.setCheck(false);
+            resp.setCode(500);
+            resp.setMessage(e.getMessage());
+
+        }
+
+
+        return resp;
+    }
     
 }

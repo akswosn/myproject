@@ -64,10 +64,13 @@
         <hr>
         <span class="contents">데이터가 존재하지 않습니다.</span>  
       </div>-->
+      
     </div>
 </template>
 
 <script>
+
+
 export default {
   name: 'Main',
   data () {

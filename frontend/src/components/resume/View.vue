@@ -1,6 +1,8 @@
 <template>
     <section class="page-section">
-        <h3> Resume Page</h3>
+        <h3> Resume View Page</h3>
+
+        <b-button>  </b-button>
     </section>
 </template>
 
@@ -13,7 +15,7 @@ export default {
       }
     },
     methods: {
-
+        
     }
  
 }

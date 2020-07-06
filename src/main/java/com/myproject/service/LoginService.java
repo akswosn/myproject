@@ -52,6 +52,17 @@ public class LoginService implements UserDetailsService {
         return result;
     }
 
+    public WebSessionVO hasLogin(WebSessionVO param){
+        Optional<WebSessionVO> vo = webSessionRepository.findByUserNoAndSessionKey(param.getUserNo(), param.getSessionKey());
+        if(vo != null){
+            return vo.get();
+        } 
+        else {
+            return null;
+        }
+
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {

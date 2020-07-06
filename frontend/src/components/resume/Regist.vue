@@ -1,6 +1,8 @@
 <template>
     <section class="page-section">
-        <h3> Resume Page</h3>
+        <h3> Resume Regist Page</h3>
+
+        
     </section>
 </template>
 
