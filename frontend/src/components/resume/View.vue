@@ -30,11 +30,15 @@
                     <span>경력</span>
                 </div>
                 <div class="body-content">
-                    <div class="itme">
-                        2000.02-2010.02 
-                        <span>(주)XXX</span>
-                        <div>업무 및 성과</div>
-                        <div>성과~~~</div>
+                    <div class="item row">
+                        <div class="col-md-4">
+                            <span>2000.02-2010.02 </span>
+                            <span class="title">(주)XXX</span>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="title text-primary">업무 및 성과</span>
+                            <span>성과~~~</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,10 +48,14 @@
                     <span>학력</span>
                 </div>
                 <div class="body-content">
-                    <div class="itme">
-                        2000.02-2010.02 
-                        <span>XX대학교 other과</span>
-                        4.0/4.5
+                    <div class="item row">
+                        <div class="col-md-4">
+                            <span>2000.02-2010.02</span>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="title">XX대학교 other과</span>
+                            <span>4.0/4.5</span>
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -57,10 +65,13 @@
                     자격증
                 </div>
                 <div class="body-content">
-                    <div class="itme">
-                        2020.02
-                        <span>XX자격증</span>
-                        content기관
+                    <div class="item row">
+                        <div class="col-md-10">
+                            <span class="inline25">2020.02</span>
+                            <span class="title-inline">XX자격증</span>
+                            <span class="inline25">content기관</span>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -70,10 +81,12 @@
                     수상 및 기타
                 </div>
                 <div class="body-content">
-                    <div class="itme">
-                        2020.02-2020.03
-                        <span>name</span>
-                        contents
+                    <div class="item row">
+                        <div class="col-md-10">
+                        <span class="inline25">2020.02-2020.03</span>
+                        <span class="title-inline">name</span>
+                        <span class="inline25">contents</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -10522,21 +10522,20 @@ Custom
   color: #a5a2a2;
   padding: 10px 0;
 }
-.header .content li title {
+.header .content li.title {
   font-size: 1.4em;
 }
 .header .content li span {
   display: block;
   width: 20%;
   text-align: left;
-  font-size: 1.1em;
   color : black;
 }
 
 .resume_wrap .resume-body .body-header{
   padding: 40px 0 6px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   color: #3b3d40;
   border-bottom: 1px solid #bababa;
 }
@@ -10547,6 +10546,25 @@ Custom
 .resume-body .body-content .item{
   padding : 10px 5px;
 }
+
+.resume-body .body-content .item span {
+  display: block;
+}
+.resume-body .body-content .item span.inline25 {
+  display: inline-block;width: 25%;
+}
+.resume-body .body-content .item span.title {
+  font-size: 1.2em;
+  color: black;
+  font-weight: 600;
+}
+.resume-body .body-content .item span.title-inline {
+  font-size: 1.2em;width: 25%;
+  display: inline-block;
+  color: black;
+  font-weight: 600;
+}
+
 
 .resume_wrap .resume-footer {
   padding:20px 30px;
@@ -10561,7 +10579,8 @@ Custom
 }
 .resume_input { 
     background-color: transparent;
-    border: none;
+    border:0px;
+    border-bottom: 1px solid #c3c3c3;
     padding: 0;
     margin-bottom: 3px;
     border-radius: 0;
