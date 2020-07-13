@@ -1,6 +1,6 @@
 package com.myproject.config;
 
-import com.myproject.interceptor.JwtRequestFilter;
+import com.myproject.filter.JwtRequestFilter;
 import com.myproject.service.LoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // We don't need CSRF for this example
         httpSecurity.cors();
         httpSecurity.csrf().disable()
-            .antMatcher("/api/**").authorizeRequests()
-            .antMatchers("/api/login").permitAll().
+            .antMatcher("/*/api/**").authorizeRequests()
+            .antMatchers("/*/api/login").permitAll().
             anyRequest().authenticated().and().
         /**
          * 

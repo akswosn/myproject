@@ -29,17 +29,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 /**
 * <pre>
-* 간략 : Web Filter, Servlet 등록 빈
+* 간략 : Web test API
 * 상세 : 
 * </pre>
 * @Author  : Keun-su(akswosn@gmail)
 * @Date    : 2020. 6. 18.
-* @Version : 1.0
+* @Version : 1.0 (v1)
 * -----------------------------------
 * 1.0 : 신규작성
 */
 @RestController
-@RequestMapping("api/test")
+@RequestMapping("v1/api/test")
 public class TestController {
     private final Logger logger = LogManager.getLogger(TestController.class);
 

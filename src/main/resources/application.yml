@@ -1,0 +1,28 @@
+# dev
+#applicationPath : C:\myproject\myproject\src\test\resources\test-application.yml
+# real
+#applicationPath : /home/ubuntu/app/real-application.yml
+
+
+server:
+    address: localhost
+    port: 8080
+
+
+spring:
+    datasource:
+#       local
+        # driver-class-name: com.mysql.cj.jdbc.Driver
+        # password: forlks
+        # url: jdbc:mysql://localhost:3306/forlks?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+        # username: forlks
+#       real
+       driver-class-name: com.mysql.cj.jdbc.Driver
+       password: akswo3390!
+       url: jdbc:mysql://forlks.cbbo5nrygkst.us-east-2.rds.amazonaws.com:3306/forlks?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+       username: forlks
+    jpa:
+        database: mysql
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        generate-ddl: true
+        show-sql: true

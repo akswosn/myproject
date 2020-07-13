@@ -5,7 +5,7 @@ import Login from '@/components/Login'
 import Test from '@/components/test/Test'
 import ResumeMain from '@/components/resume/Main'
 import ResumeRegist from '@/components/resume/Regist'
-import ResumeView from '@/components/resume/Regist'
+import ResumeView from '@/components/resume/view'
 import BlogMain from '@/components/blog/Main'
 
 Vue.use(Router)

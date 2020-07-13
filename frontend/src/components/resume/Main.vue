@@ -6,7 +6,7 @@
                     <h3 class="section-subheading text-muted">이력서 목록</h3>
                 </div>
                 <div class="container text-right">
-                    <a class="btn btn-primary btn-xl js-scroll-trigger " >등록</a>
+                    <router-link to="/resume/regist">등록</router-link>
                 </div>
                 <hr/>
                 <div class="row">

@@ -9,10 +9,10 @@ import VueSimpleAlert from "vue-simple-alert"
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // import VeeValidate from 'vee-validate'
 import 'jquery/dist/jquery.js'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'bootstrap-vue/dist/bootstrap-vue.js'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios;
@@ -23,8 +23,8 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 //
-Vue.prototype.ROOT_URL = "";
-// Vue.prototype.ROOT_URL = "http://localhost:8080";
+Vue.prototype.ROOT_URL = "/v1";
+Vue.prototype.ROOT_URL = "http://localhost:8080/v1";
 
 
 //인증토큰관련(sessionStorage)

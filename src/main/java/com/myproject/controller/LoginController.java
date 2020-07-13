@@ -24,12 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 * </pre>
 * @Author  : Keun-su(akswosn@gmail)
 * @Date    : 2020. 6. 23.
-* @Version : 1.0
+* @Version : 1.0 (v1)
 * -----------------------------------
 * 1.0 : 신규작성
 */
 @RestController
-@RequestMapping("api/login")
+@RequestMapping("v1/api/login")
 public class LoginController {
     
     private final Logger logger = LogManager.getLogger(LoginController.class);
