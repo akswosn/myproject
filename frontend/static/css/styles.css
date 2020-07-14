@@ -10128,7 +10128,7 @@ img::-moz-selection {
   #mainNav.navbar-shrink .navbar-brand svg,
 #mainNav.navbar-shrink .navbar-brand img {
     height: 1.5rem;
-  }
+  } 
   #mainNav .navbar-nav .nav-item {
     margin-right: 1rem;
   }
@@ -10587,4 +10587,9 @@ Custom
     height: auto;
     width: 100%;
     white-space: pre-wrap;
+}
+footer .copyright {
+  font-size: 14px;
+  margin-bottom: 0;
+  text-align: center;
 }

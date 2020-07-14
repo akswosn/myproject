@@ -5,8 +5,9 @@ import Login from '@/components/Login'
 import Test from '@/components/test/Test'
 import ResumeMain from '@/components/resume/Main'
 import ResumeRegist from '@/components/resume/Regist'
-import ResumeView from '@/components/resume/view'
+import ResumeView from '@/components/resume/View'
 import BlogMain from '@/components/blog/Main'
+import BlogView from '@/components/blog/View'
 
 Vue.use(Router)
 
@@ -52,6 +53,12 @@ export default new Router({
       path: '/blog',
       name: 'blogMain',
       component: BlogMain
+    },    
+    {
+      path: '/blog/view/:no',
+      name: 'BlogView',
+      component: BlogView
     },
+
   ]
 })
