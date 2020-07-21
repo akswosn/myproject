@@ -1,6 +1,10 @@
 package com.myproject.service.resume;
 
 
+
+
+import java.time.LocalDateTime;
+
 import com.myproject.model.resume.ResumeVO;
 import com.myproject.repository.resume.ResumeRepository;
 
@@ -28,6 +32,14 @@ public class ResumeService {
 
 	public Page<ResumeVO> getAll(PageRequest pageable) {
 		return resumeRepository.findAll(pageable);
+	}
+
+	public ResumeVO save(ResumeVO resume) {
+		resume.setRdate(LocalDateTime.now());
+		resume.setUdate(LocalDateTime.now());
+		ResumeVO vo = resumeRepository.save(resume);
+
+		return vo;
 	}
     
 }

@@ -53,28 +53,16 @@ public class LoginController {
             logger.info("userVO >>>>> "+userVO);
 
             if(userVO == null){
-                resp.setCheck(false);
-                resp.setCode(500);
-                resp.setMessage("아이디/비밀번호를 확인해 주세요");
-                return resp;
+                return MyResponseEntity.error(500, "아이디/비밀번호를 확인해 주세요");
             }
             //2.토큰생성 및 로그인 처리
             vo = loginService.login(userVO);
-            resp.setCheck(true);
-            resp.setCode(200);
-            resp.setData(vo);
-            resp.setMessage("로그인 되었습니다.");
+            resp = MyResponseEntity.success("로그인 되었습니다.", vo);
         }
         catch(Exception e){
-            e.printStackTrace();
-            logger.error(e.getLocalizedMessage());
-            resp.setCheck(false);
-            resp.setCode(500);
-            resp.setMessage(e.getMessage());
-
+            logger.error(e.getMessage());
+            return MyResponseEntity.error(500, e.getLocalizedMessage());
         }
-   
-
         return resp;
     }   
 
@@ -84,26 +72,16 @@ public class LoginController {
         try {
             WebSessionVO vo = loginService.hasLogin(param);
             if(vo == null){
-                resp.setCheck(false);
-                resp.setCode(500);
-                resp.setData(null);
+                resp = MyResponseEntity.error(500, "회원이 존재하지 않습니다.");
             }
             else {
-                resp.setCheck(true);
-                resp.setCode(200);
-                resp.setData(vo);
+                resp = MyResponseEntity.success(vo);
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error(e.getLocalizedMessage());
-            resp.setCheck(false);
-            resp.setCode(500);
-            resp.setMessage(e.getMessage());
-
+            return MyResponseEntity.error(500, e.getLocalizedMessage());
         }
-
-
         return resp;
     }
     

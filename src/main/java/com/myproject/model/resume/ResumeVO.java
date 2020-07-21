@@ -1,6 +1,6 @@
 package com.myproject.model.resume;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,7 +37,7 @@ public class ResumeVO {
     private String skill;
     @Column(name = "repo_url")
     private String repoUrl;
-    private LocalDate rdate;                                                                                                                           
-    private LocalDate udate;
+    private LocalDateTime rdate;                                                                                                                           
+    private LocalDateTime udate;
     
 }

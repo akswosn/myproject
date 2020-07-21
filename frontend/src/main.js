@@ -24,7 +24,7 @@ Vue.use(IconsPlugin)
 
 //
 Vue.prototype.ROOT_URL = "/v1";
-// Vue.prototype.ROOT_URL = "http://localhost:8080/v1";
+Vue.prototype.ROOT_URL = "http://localhost:8080/v1";
 
 
 //인증토큰관련(sessionStorage)

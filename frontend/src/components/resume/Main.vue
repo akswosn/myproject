@@ -9,8 +9,8 @@
                     <router-link to="/resume/regist">등록</router-link>
                 </div>
                 <hr/>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="row" v-if="resumeList.length > 0">
+                    <div v-for="resume in resumeList" class="col-lg-4 col-sm-6 mb-4" >
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
                                 <div class="portfolio-hover">
@@ -25,6 +25,9 @@
                         </div>
                     </div>
                    
+                </div>
+                <div class="text-center font-italic" v-else>
+                    등록된 이력서가 존재하지 않습니다.
                 </div>
             </div>
     </section>
@@ -54,10 +57,10 @@ export default {
             this.$http.get(this.ROOT_URL+`/api/resume`,{crossDomain: true, params:param})
             .then((result) => {
                 console.log(result)
-                this.api1_result = result.data;
-                this.api1_err = null
+                this.resumeList = result.data;
+
             }).catch(function (error) {
-                self.api1_err = error;
+
             })
         }
     },

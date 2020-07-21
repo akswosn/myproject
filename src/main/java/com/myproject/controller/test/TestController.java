@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.myproject.model.common.MyResponseEntity;
 import com.myproject.model.test.TestVO;
 import com.myproject.service.test.TestService;
 
@@ -54,28 +55,27 @@ public class TestController {
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<TestVO>> getAllTest() { 
+    public MyResponseEntity<List<TestVO>> getAllTest() { 
         List<TestVO> result =null;
-        HttpStatus status = null;
+        MyResponseEntity<List<TestVO>> resp = null;
         try{
             logger.info("Call getAllTest");
             result = testService.findAll(); 
-            status = HttpStatus.OK;
+            resp = MyResponseEntity.success(result);
         }
         catch(Exception e){
             logger.error(e.getLocalizedMessage());
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            resp = MyResponseEntity.error(500,e.getLocalizedMessage());
         }
-        return new ResponseEntity<List<TestVO>>(result, status); 
+        return resp; 
     }
 
     @GetMapping(value="/{no}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<TestVO> getTestById(@PathVariable("no") long no, HttpServletRequest request){
+    public MyResponseEntity<TestVO> getTestById(@PathVariable("no") long no, HttpServletRequest request){
         TestVO result =null;
-        HttpStatus status = null;
+        MyResponseEntity<TestVO> resp = null;
         try{
             logger.info("Call getTestById"); 
-            logger.info(request.getRemoteAddr());
             Optional<TestVO> test = testService.findByNo(no); 
             logger.info("result >> ", result);
             if(test == null){
@@ -84,74 +84,74 @@ public class TestController {
             else {
                 result = test.get();
             }
-            status = HttpStatus.OK;
+            resp = MyResponseEntity.success(result);
         }
         catch(Exception e){
             logger.error(e.getLocalizedMessage());
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            resp = MyResponseEntity.error(500, e.getLocalizedMessage());
         }
-        return new ResponseEntity<TestVO>(result, status); 
+        return resp; 
     }
 
     @PostMapping
-    public ResponseEntity<TestVO> saveTest(@RequestBody TestVO testVO, HttpServletRequest request, HttpServletResponse response) {
+    public MyResponseEntity<TestVO> saveTest(@RequestBody TestVO testVO, HttpServletRequest request, HttpServletResponse response) {
         TestVO result =null;
-        HttpStatus status = null;
+        MyResponseEntity<TestVO> resp = null;
 
         if(!ipCheck(request.getRemoteAddr())){
-            return new ResponseEntity<TestVO>(new TestVO(), HttpStatus.FORBIDDEN);
+            return MyResponseEntity.error(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase());
         }
         try{
             logger.info(request.getRemoteAddr());
             logger.info("Call save");
             result = testService.save(testVO);
-            status = HttpStatus.OK;
+            resp = MyResponseEntity.success(result);
         }
         catch(Exception e){
             logger.error(e.getLocalizedMessage());
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            resp = MyResponseEntity.error(500, e.getLocalizedMessage());
         }
-        return new ResponseEntity<TestVO>(result, status);
+        return resp;
     }
     
     @PutMapping(value="/{no}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<TestVO> updateTest(@PathVariable long no, @RequestBody TestVO testVO, HttpServletRequest request, HttpServletResponse response) {
-        HttpStatus status = null;
+    public MyResponseEntity<TestVO> updateTest(@PathVariable long no, @RequestBody TestVO testVO, HttpServletRequest request, HttpServletResponse response) {
+        MyResponseEntity<TestVO> resp = null;
         if(!ipCheck(request.getRemoteAddr())){
-            return new ResponseEntity<TestVO>(new TestVO(), HttpStatus.FORBIDDEN);
+            return MyResponseEntity.error(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase());
         }
         try{
             logger.info("Call save");
             testService.update(no, testVO);
-            status = HttpStatus.OK;
             testVO.setNo(no);
+            resp = MyResponseEntity.success();
         }
         catch(Exception e){
             logger.error(e.getLocalizedMessage());
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            resp = MyResponseEntity.error(500, e.getLocalizedMessage());
         }
-        return new ResponseEntity<TestVO>(testVO, status);
+        return resp;
     } 
 
     @DeleteMapping(value="/{no}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<TestVO> deleteTest(@PathVariable long no, HttpServletRequest request, HttpServletResponse response){
-        HttpStatus status = null;
+    public MyResponseEntity<TestVO> deleteTest(@PathVariable long no, HttpServletRequest request, HttpServletResponse response){
+        MyResponseEntity<TestVO> resp = null;
         TestVO result =null;
         if(!ipCheck(request.getRemoteAddr())){
-            return new ResponseEntity<TestVO>(new TestVO(), HttpStatus.FORBIDDEN);
+            return MyResponseEntity.error(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase());
         }
         try{
             Optional<TestVO> test  = testService.findByNo(no); 
             result = test.get();
             logger.info("Call delete");
             testService.deleteByNo(no);
-            status = HttpStatus.OK;
+            resp = MyResponseEntity.success(result);
             
         }
         catch(Exception e){
             logger.error(e.getLocalizedMessage());
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            resp = MyResponseEntity.error(500, e.getLocalizedMessage());
         }
-        return new ResponseEntity<TestVO>(result, status);
+        return resp;
     }
 }

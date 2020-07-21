@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,18 +49,32 @@ public class ResumeController {
 
             Page<ResumeVO> data = resumeService.getAll(PageRequest.of(page, listCount, sortQuery));
             logger.info("data >>> "+data);
-            resp.setCheck(true);
-            resp.setCode(200);
-            resp.setData(data);
+            resp = MyResponseEntity.success(data);
             
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error(e.getLocalizedMessage());
-            resp.setCheck(false);
-            resp.setCode(500);
-            resp.setMessage(e.getMessage());
+            resp = MyResponseEntity.error(500, e.getLocalizedMessage());
         }
 
+
+
+        return resp;
+    }
+
+    @PostMapping
+    public MyResponseEntity<ResumeVO> save(@RequestBody ResumeVO resume){
+        logger.debug("resume save param >>> "+resume);
+        MyResponseEntity<ResumeVO> resp = new MyResponseEntity<>();
+        try {
+            ResumeVO vo = resumeService.save(resume);
+            logger.debug("save result >>> "+vo);
+
+            resp = MyResponseEntity.success(vo);
+            
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage());
+            resp = MyResponseEntity.error(500, e.getLocalizedMessage());
+        }
 
 
         return resp;

@@ -110,7 +110,7 @@
                 <a class="add-item">+추가</a>
             </div>
             <div class="resume-footer">
-                <a class="btn btn-primary btn-xl ">저장</a>
+                <a class="btn btn-primary btn-xl " v-on:click="submit">저장</a>
             </div>
         </div>
         
@@ -122,14 +122,28 @@ export default {
     name: 'resume-regist',
     data() {
         return {
-            id : ''
+            no : ''
         }
     },
     methods: {
+        submit : function(){
+            if(this.no > 0){
+                this.update();
+            }
+            else {
+                this.save();
+            }
+        },
+        save : function(){
 
+        },
+        update : function(){
+
+        }
     },
     mounted(){
-        console.log('id', this.id);
+        this.no = this.$route.params.no;
+        console.log('no', this.$route.params.no);
     }
  
 }

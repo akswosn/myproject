@@ -12,10 +12,12 @@ export default {
       }
     }
   },
-  mounted(){
+  methods : {
+    loginCheck : function(){
         var self = this;
-        console.log('loginCheck', this.$storage.getItem('userNo'));
-        console.log('loginCheck', this.$storage.getItem('token')); 
+        
+        console.log('loginCheck', self.$storage.getItem('userNo'));
+        console.log('loginCheck', self.$storage.getItem('token')); 
 
        if(this.$storage.getItem('userNo') != null && this.$storage.getItem('token') != null){
             this.session.userNo = this.$storage.getItem('userNo');
@@ -47,7 +49,10 @@ export default {
        else {
            this.$storage.clear();
        }
-
+    }
+  },
+  mounted(){
+    this.loginCheck();
   }
 }
 </script>

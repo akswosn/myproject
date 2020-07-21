@@ -45,7 +45,7 @@ export default new Router({
       name: 'ResumeRegist',
       component: ResumeRegist
     },{
-      path: '/resume/regist/:no+',
+      path: '/resume/regist/:no',
       name: 'ResumeRegist',
       component: ResumeRegist
     },

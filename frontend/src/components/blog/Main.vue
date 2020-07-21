@@ -60,7 +60,7 @@
             <div class="col-md-8 container">
                 
 
-                <div class="row">
+                <div class="row" id="portfolio">
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
                             <router-link to="blog/view/1" class="portfolio-link" >
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-6 mb-4" >
                         <div class="portfolio-item">
                             <router-link to="blog/view/1" class="portfolio-link" >
                                 
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0" >
                         <div class="portfolio-item">
                             <router-link to="blog/view/1" class="portfolio-link" >
                                 
