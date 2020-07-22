@@ -4,8 +4,6 @@ import org.springframework.stereotype.Repository;
 
 import com.myproject.model.resume.ResumeVO;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 /**
 * <pre>

@@ -16,12 +16,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +44,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 */
 @RestController
 @RequestMapping("v1/api/test")
+@Api(value="TEST API", description="rest API TEST")
 public class TestController {
     private final Logger logger = LogManager.getLogger(TestController.class);
 
@@ -54,6 +58,7 @@ public class TestController {
         return result;
     }
 
+    @ApiOperation(value = "Select All",response = MyResponseEntity.class)
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public MyResponseEntity<List<TestVO>> getAllTest() { 
         List<TestVO> result =null;
@@ -70,6 +75,7 @@ public class TestController {
         return resp; 
     }
 
+    @ApiOperation(value = "Select One",response = MyResponseEntity.class)
     @GetMapping(value="/{no}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public MyResponseEntity<TestVO> getTestById(@PathVariable("no") long no, HttpServletRequest request){
         TestVO result =null;
@@ -93,6 +99,7 @@ public class TestController {
         return resp; 
     }
 
+    @ApiOperation(value = "Save",response = MyResponseEntity.class)
     @PostMapping
     public MyResponseEntity<TestVO> saveTest(@RequestBody TestVO testVO, HttpServletRequest request, HttpServletResponse response) {
         TestVO result =null;
@@ -114,6 +121,7 @@ public class TestController {
         return resp;
     }
     
+    @ApiOperation(value = "update",response = MyResponseEntity.class)
     @PutMapping(value="/{no}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public MyResponseEntity<TestVO> updateTest(@PathVariable long no, @RequestBody TestVO testVO, HttpServletRequest request, HttpServletResponse response) {
         MyResponseEntity<TestVO> resp = null;
@@ -133,6 +141,7 @@ public class TestController {
         return resp;
     } 
 
+    @ApiOperation(value = "Delete",response = MyResponseEntity.class)
     @DeleteMapping(value="/{no}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public MyResponseEntity<TestVO> deleteTest(@PathVariable long no, HttpServletRequest request, HttpServletResponse response){
         MyResponseEntity<TestVO> resp = null;

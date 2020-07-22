@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
 * <pre>
 * 간략 : 로그인 컨트롤러
@@ -30,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 */
 @RestController
 @RequestMapping("v1/api/login")
+@Api(value="로그인 API", description="로그인 및 인증 토큰 체크/관리 API")
 public class LoginController {
     
     private final Logger logger = LogManager.getLogger(LoginController.class);
@@ -39,6 +43,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    @ApiOperation(value = "로그인",response = MyResponseEntity.class)
     @PostMapping
     public MyResponseEntity<WebSessionVO> login(@RequestBody UserVO param, HttpServletRequest request, HttpServletResponse response){
         logger.info(">>>> call login");
@@ -66,6 +71,7 @@ public class LoginController {
         return resp;
     }   
 
+    @ApiOperation(value = "로그인 체크",response = MyResponseEntity.class)
     @PostMapping(value="/check")
     public MyResponseEntity<WebSessionVO> hasLogin(@RequestBody WebSessionVO param){
         MyResponseEntity<WebSessionVO> resp = new MyResponseEntity<>();

@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 /**
 * <pre>
@@ -21,13 +24,23 @@ import lombok.Data;
 */
 @Data
 @Entity(name="tb_test")
+@ApiModel(value = "Test Entity", description = "TEST 엔티티")
 public class TestVO {
     @Id
     @Column(name = "NO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "PK")
     private long no;
+
+    @ApiModelProperty(value = "이름")
     private String name;
+
+    @ApiModelProperty(value = "내용")
     private String contents;
+
+    @ApiModelProperty(value = "등록일")
     private LocalDateTime rdate;
+
+    @ApiModelProperty(value = "수정일")
     private LocalDateTime udate;
 }

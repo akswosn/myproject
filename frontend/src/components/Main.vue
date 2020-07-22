@@ -12,8 +12,8 @@
                 <div class="masthead-subheading">
                   <a href="mailto:akswosn@gmail.com" class="header-link" target="_blank" >mail : akswosn@gmail.com</a>
                 </div>
-                <a class="btn btn-primary btn-lg text-uppercase js-scroll-trigger" href="/#/resume">Go My Self</a>
-                <router-link class="btn btn-primary btn-lg text-uppercase js-scroll-trigger" to="/test">Go to TestAPI</router-link>
+                <a class="btn btn-primary btn-lg text-uppercase js-scroll-trigger" href="/swagger-ui.html">Go to TestAPI</a>
+                <router-link class="btn btn-primary btn-lg text-uppercase js-scroll-trigger" to="/#/resume">Go My Self</router-link>
             </div>
         </header>
          <!-- Portfolio Grid-->

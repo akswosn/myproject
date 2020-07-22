@@ -19,7 +19,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 /**
@@ -37,6 +38,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity(name = "tb_user")
+@ApiModel(value = "User Entity", description = "계정 엔티티")
 public class UserVO implements UserDetails {
 
     /**
@@ -46,12 +48,21 @@ public class UserVO implements UserDetails {
     @Id
     @Column(name = "NO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "PK")
     private long no;
+
     @Column(name = "USER_ID")
+    @ApiModelProperty(value = "계정명")
     private String userId;
+
     @Column(name = "USER_PWD")
+    @ApiModelProperty(value = "비밀번호")
     private String userPwd;
+
+    @ApiModelProperty(value = "이름")
     private String name;
+
+    @ApiModelProperty(value = "권한")
     private int roll;
 
     @ElementCollection(fetch = FetchType.EAGER)

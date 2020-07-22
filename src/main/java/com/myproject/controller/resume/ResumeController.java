@@ -1,8 +1,6 @@
 package com.myproject.controller.resume;
 
-import java.util.List;
 
-import com.myproject.model.common.CommonParam;
 import com.myproject.model.common.MyResponseEntity;
 import com.myproject.model.resume.ResumeVO;
 import com.myproject.service.resume.ResumeService;
@@ -19,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 /**
 * <pre>
 * 간략 : 이력서 컨트롤러
@@ -30,8 +31,11 @@ import org.springframework.web.bind.annotation.RestController;
 * -----------------------------------
 * 1.0 : 신규작성
 */
+
+
 @RestController
 @RequestMapping("v1/api/resume")
+@Api(value="이력서 API", description="이력(학교, 직장, 개인등) 정보 CRUD API")
 public class ResumeController {
 
     private final Logger logger = LogManager.getLogger(ResumeController.class);
@@ -39,6 +43,8 @@ public class ResumeController {
     @Autowired
     private ResumeService resumeService;
 
+    
+    @ApiOperation(value = "이력서 목록 조회",response = MyResponseEntity.class)
     @GetMapping
     public MyResponseEntity<Page<ResumeVO>> resumeList(@RequestParam(value="page") int page, @RequestParam(value="listCount") int listCount, @RequestParam(value="sort") String sort){
         MyResponseEntity<Page<ResumeVO>> resp = new MyResponseEntity<>();
@@ -56,11 +62,10 @@ public class ResumeController {
             resp = MyResponseEntity.error(500, e.getLocalizedMessage());
         }
 
-
-
         return resp;
     }
 
+    @ApiOperation(value = "이력서 등록",response = MyResponseEntity.class)
     @PostMapping
     public MyResponseEntity<ResumeVO> save(@RequestBody ResumeVO resume){
         logger.debug("resume save param >>> "+resume);
