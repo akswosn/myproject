@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/components/Main'
-import Login from '@/components/Login'
+import Main from '@/view/Main'
+import Login from '@/view/Login'
 import Test from '@/components/test/Test'
-import ResumeMain from '@/components/resume/Main'
-import ResumeRegist from '@/components/resume/Regist'
-import ResumeView from '@/components/resume/View'
-import BlogMain from '@/components/blog/Main'
-import BlogView from '@/components/blog/View'
+import ResumeMain from '@/view/resume/Main'
+import ResumeRegist from '@/view/resume/Regist'
+import ResumeView from '@/view/resume/View'
+import BlogMain from '@/view/blog/Main'
+import BlogView from '@/view/blog/View'
 
 Vue.use(Router)
 

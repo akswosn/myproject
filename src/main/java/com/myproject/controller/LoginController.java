@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.myproject.model.WebSessionVO;
 import com.myproject.model.common.MyResponseEntity;
+import com.myproject.model.user.LoginParam;
 import com.myproject.model.user.UserVO;
 import com.myproject.service.LoginService;
 import com.myproject.service.user.UserService;
@@ -45,7 +46,7 @@ public class LoginController {
 
     @ApiOperation(value = "로그인",response = MyResponseEntity.class)
     @PostMapping
-    public MyResponseEntity<WebSessionVO> login(@RequestBody UserVO param, HttpServletRequest request, HttpServletResponse response){
+    public MyResponseEntity<WebSessionVO> login(@RequestBody LoginParam param, HttpServletRequest request, HttpServletResponse response){
         logger.info(">>>> call login");
         WebSessionVO vo = new WebSessionVO();
         MyResponseEntity<WebSessionVO> resp = new MyResponseEntity<>();

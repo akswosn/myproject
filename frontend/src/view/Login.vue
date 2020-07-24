@@ -114,8 +114,14 @@ export default {
             if(result.data.code == 200){
                 self.$storage.setItem("userNo", result.data.data.userNo);
                 self.$storage.setItem("token", result.data.data.sessionKey);
+                console.log(self.$parent.$children);
+                self.$parent.$children.forEach(function(value, index){
+                    console.log(value.loginCheck);
+                    if(value.loginCheck !=  undefined){
+                        value.loginCheck();
+                    }
+                });
 
-                self.$parent.$children[0].loginCheck();
                 self.$router.push('/');
             }
             else {
