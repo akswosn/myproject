@@ -18,7 +18,7 @@ spring:
         # username: forlks
 #       real
        driver-class-name: com.mysql.cj.jdbc.Driver
-       password: akswo3390!
+       password: akswo3390
        url: jdbc:mysql://forlks.cbbo5nrygkst.us-east-2.rds.amazonaws.com:3306/forlks?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
        username: forlks
     jpa:
